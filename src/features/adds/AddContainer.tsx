@@ -2,6 +2,7 @@ import { Modal } from "antd";
 import AddUser from "./components/AddUser";
 import { User } from "../users/types/UserTypes";
 
+
 interface Props {
   open: boolean;
   onClose: () => void;
@@ -16,7 +17,8 @@ const AddContainer = ({ open, onClose, onAdd }: Props) => {
 
   return (
     <Modal open={open} onCancel={onClose} footer={null} title="Dodaj korisnika">
-      <AddUser onAdd={handleAdd} />
+      <AddUser onAdd={handleAdd}
+       />
     </Modal>
   );
 };

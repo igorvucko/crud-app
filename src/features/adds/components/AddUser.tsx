@@ -1,5 +1,6 @@
 import { Form, Input, Button } from "antd";
 import { User } from "../../users/types/UserTypes";
+import { toast } from 'react-toastify';
 
 interface Props {
   onAdd: (user: User) => void;
@@ -15,6 +16,7 @@ const AddUser = ({ onAdd }: Props) => {
     };
     onAdd(newUser);
     form.resetFields();
+
   };
 
   return (

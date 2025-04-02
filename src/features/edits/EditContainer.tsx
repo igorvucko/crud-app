@@ -1,6 +1,6 @@
 import { Modal, Form, Input } from "antd";
 import { User } from "../users/types/UserTypes";
-
+import { toast } from "react-toastify";
 interface Props {
   user: User | null;
   onClose: () => void;
@@ -14,6 +14,7 @@ const EditContainer = ({ user, onClose, onSave }: Props) => {
     form.validateFields().then((values) => {
       const updatedUser = { ...user, ...values } as User;
       onSave(updatedUser);
+      toast.success(`Uspješno ste izmijenili podatke !`);
     });
   };
 
