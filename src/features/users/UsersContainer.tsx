@@ -4,6 +4,8 @@ import { User } from "../users/types/UserTypes";
 import EditContainer from "../edits/EditContainer";
 import AddContainer from "../adds/AddContainer";
 import { dummyUsers } from "./utils/dummyUsers";
+import { saveUsers } from "./utils/utils";
+import { toast } from "react-toastify";
 
 const UsersContainer = () => {
   const [users, setUsers] = useState<User[]>([]);
@@ -13,6 +15,13 @@ const UsersContainer = () => {
   useEffect(() => {
     setUsers(dummyUsers);
   }, []);
+
+  const handleDelete = (userId:number) => {
+    const updatedUsers = users.filter((user) => user.id !== userId)
+    saveUsers(updatedUsers);
+    setUsers(updatedUsers);
+    toast.success("Korisnik je obrisan");
+  }
 
   const handleAddUser = (user: User) => {
     setUsers((prev) => [...prev, user]);
@@ -40,6 +49,7 @@ prev.map((u) => (u.id === updatedUser.id ? updatedUser : u))
         onEdit={handleEditUser}
         onAdd={handleAddUser}
         openAddModal={openAddModal}
+        onDelete={handleDelete}
       />
 
       <AddContainer

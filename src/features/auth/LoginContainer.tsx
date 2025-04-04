@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import { message } from "antd";
 import Userlogin from "./components/UsersLogin";
 import { dummyUser } from "./utils/dummyUser";
 import { toast } from 'react-toastify';
@@ -13,7 +12,7 @@ if (email === dummyUser.email && password === dummyUser.password) {
       toast.success(`${dummyUser.name} dobrodošao u aplikaciju !`);
       navigate("/");
     } else {
-      message.error("Neispravni podaci. Pokušajte ponovno.");
+      toast.error("Neispravni podaci. Pokušajte ponovno.");
     }
   };
 

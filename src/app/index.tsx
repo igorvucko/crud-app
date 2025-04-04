@@ -1,17 +1,19 @@
-import { StrictMode } from "react";
 import AppRouter from "./routes/router";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
+import { Layout } from "antd";
+import Header from "../components/Header";
 
 const App = () => {
-    return (
-        <StrictMode>
+  return (
+    <Layout style={{ minHeight: "100vh" }}>
+      <Header />
+      <Layout.Content style={{ padding: "30px" }}>
         <AppRouter />
-        <ToastContainer position="bottom-center" autoClose={3000} />
-        </StrictMode>
+      </Layout.Content>
+      <ToastContainer position="bottom-center" autoClose={3000} />
+    </Layout>
+  );
+};
 
-
-    );
-  };
-
-  export default App;
+export default App;

@@ -1,18 +1,17 @@
-import { Table, Button } from "antd";
+import { Table, Button, Popconfirm } from "antd";
 import { User } from "../../users/types/UserTypes";
 
 interface Props {
   users: User[];
   onEdit: (user: User) => void;
-  onAdd: (user: User) => void;
+  onDelete: (userId: number) => void;
   openAddModal: () => void;
+  onAdd:(user:User) => void;
 }
 
-const UsersTable = ({ users, onEdit, openAddModal }: Props) => {
+const UsersTable = ({ users, onEdit, onDelete, openAddModal }: Props) => {
   return (
     <>
-
-
       <Table
         dataSource={users}
         rowKey="id"
@@ -26,15 +25,31 @@ const UsersTable = ({ users, onEdit, openAddModal }: Props) => {
           {
             title: "Akcije",
             render: (_, user) => (
-              <Button onClick={() => onEdit(user)}>Izmijeni</Button>
+              <>
+                <Button
+                  onClick={() => onEdit(user)}
+                  style={{ marginRight: 8 }}
+                >
+                  Izmijeni
+                </Button>
+                <Popconfirm
+                  title="Jeste li sigurni da želite obrisati korisnika?"
+                  onConfirm={() => onDelete(user.id)}
+                  okText="Da"
+                  cancelText="Ne"
+                >
+                  <Button danger>Obriši</Button>
+                </Popconfirm>
+              </>
             ),
           },
         ]}
       />
+
       <Button
         type="primary"
         onClick={openAddModal}
-        style={{ marginBottom: 16 }}
+        style={{ marginTop: 16 }}
       >
         Dodaj
       </Button>
